@@ -3,10 +3,15 @@
 import { motion } from "framer-motion";
 import GlowButton from "./ui/GlowButton";
 
-const menuItems = [
-  { name: "Grilled Lamb Souvlaki", desc: "Charred lemon, tzatziki, warm pita", price: "R165", emoji: "🍢" },
-  { name: "Wood-Fired Margherita", desc: "San Marzano tomato, basil, fior di latte", price: "R120", emoji: "🍕" },
-  { name: "Catch of the Day", desc: "Pan-seared, brown butter, capers", price: "R210", emoji: "🐟" },
+const DEMO_URL = "https://emenyu.com/Trump/Table1";
+
+// Faithful recreation of the live demo (Trumps Prime Grillhouse sample
+// restaurant) — the phone links straight to the real thing.
+const categories = [
+  { name: "Wine", sub: "The cellar", icon: "🍷" },
+  { name: "Cocktails", sub: "Signature pours", icon: "🍸" },
+  { name: "Set Menu", sub: "Curated combos", icon: "✨" },
+  { name: "Mains", sub: "Steaks & grill", icon: "🥩" },
 ];
 
 export default function Hero() {
@@ -118,7 +123,7 @@ export default function Hero() {
             <GlowButton variant="primary" href="/contact">
               Book a Demo
             </GlowButton>
-            <GlowButton variant="secondary" href="/demo">
+            <GlowButton variant="secondary" href={DEMO_URL}>
               Try the Live Demo
             </GlowButton>
           </motion.div>
@@ -133,11 +138,12 @@ export default function Hero() {
               color: "var(--ink-muted)",
             }}
           >
-            See the real product in your browser — no signup needed.
+            The demo is the real product, live in your browser — no signup
+            needed.
           </motion.p>
         </div>
 
-        {/* Right: phone mockup */}
+        {/* Right: phone linking to the live demo (Trumps Prime Grillhouse) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -149,206 +155,234 @@ export default function Hero() {
             width: "100%",
           }}
         >
-          <div
-            style={{
-              position: "relative",
-              borderRadius: 40,
-              border: "6px solid var(--ink)",
-              background: "var(--surface)",
-              height: 600,
-              boxShadow: "0 40px 80px rgba(46, 36, 24, 0.18)",
-              overflow: "hidden",
-            }}
+          <a
+            href={DEMO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", display: "block" }}
+            aria-label="Open the live demo — Trumps Prime Grillhouse sample restaurant"
           >
-            {/* Notch */}
             <div
               style={{
-                position: "absolute",
-                top: 12,
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: 100,
-                height: 26,
-                background: "var(--ink)",
-                borderRadius: 13,
-                zIndex: 10,
-              }}
-            />
-
-            {/* Mock menu UI */}
-            <div
-              style={{
-                padding: "56px 20px 20px",
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                background: "var(--surface-warm)",
+                position: "relative",
+                borderRadius: 40,
+                border: "6px solid var(--ink)",
+                background: "#0b1622",
+                height: 600,
+                boxShadow: "0 40px 80px rgba(46, 36, 24, 0.22)",
+                overflow: "hidden",
+                cursor: "pointer",
               }}
             >
-              <div style={{ marginBottom: 20 }}>
+              {/* Notch */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 12,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: 100,
+                  height: 26,
+                  background: "var(--ink)",
+                  borderRadius: 13,
+                  zIndex: 10,
+                }}
+              />
+
+              {/* Demo menu recreation */}
+              <div
+                style={{
+                  padding: "52px 18px 16px",
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  textAlign: "center",
+                }}
+              >
+                {/* Monogram */}
+                <div
+                  style={{
+                    width: 40,
+                    height: 40,
+                    margin: "0 auto 8px",
+                    borderRadius: "50%",
+                    border: "1px solid #d9b36a",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#d9b36a",
+                    fontFamily: "var(--font-display)",
+                    fontSize: 18,
+                  }}
+                >
+                  T
+                </div>
+                <div
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.3em",
+                    color: "#d9b36a",
+                    fontWeight: 600,
+                    marginBottom: 4,
+                  }}
+                >
+                  WELCOME TO
+                </div>
                 <div
                   style={{
                     fontFamily: "var(--font-display)",
-                    fontSize: 20,
+                    fontSize: 30,
+                    fontWeight: 700,
+                    color: "#e9c982",
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Trumps
+                </div>
+                <div
+                  style={{
+                    fontSize: 10,
+                    letterSpacing: "0.32em",
+                    color: "#d9b36a",
                     fontWeight: 600,
-                    color: "var(--ink)",
+                    marginBottom: 12,
                   }}
                 >
-                  Trattoria Demo
+                  PRIME GRILLHOUSE
                 </div>
-                <div style={{ fontSize: 12, color: "var(--ink-muted)" }}>
-                  Table 4 · Dinner menu
-                </div>
-              </div>
 
-              {/* Category pills */}
-              <div style={{ display: "flex", gap: 8, marginBottom: 20 }}>
+                {/* Table pill */}
                 <div
                   style={{
-                    background: "var(--ink)",
-                    color: "var(--surface)",
+                    margin: "0 auto 14px",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 6,
                     padding: "6px 14px",
-                    borderRadius: 20,
-                    fontSize: 12,
+                    borderRadius: 100,
+                    border: "1px solid rgba(217, 179, 106, 0.35)",
+                    fontSize: 9,
+                    letterSpacing: "0.18em",
+                    color: "#e6d8b8",
                     fontWeight: 600,
                   }}
                 >
-                  Mains
-                </div>
-                <div
-                  style={{
-                    background: "var(--surface)",
-                    color: "var(--ink-soft)",
-                    padding: "6px 14px",
-                    borderRadius: 20,
-                    fontSize: 12,
-                    fontWeight: 500,
-                    border: "1px solid var(--line)",
-                  }}
-                >
-                  Starters
-                </div>
-                <div
-                  style={{
-                    background: "var(--surface)",
-                    color: "var(--ink-soft)",
-                    padding: "6px 14px",
-                    borderRadius: 20,
-                    fontSize: 12,
-                    fontWeight: 500,
-                    border: "1px solid var(--line)",
-                  }}
-                >
-                  Drinks
-                </div>
-              </div>
-
-              {/* Menu items */}
-              <div style={{ flex: 1 }}>
-                {menuItems.map((item) => (
-                  <div
-                    key={item.name}
+                  <span
                     style={{
-                      display: "flex",
-                      gap: 14,
-                      marginBottom: 16,
-                      background: "var(--surface)",
-                      border: "1px solid var(--line)",
-                      borderRadius: 16,
-                      padding: 12,
+                      width: 5,
+                      height: 5,
+                      borderRadius: "50%",
+                      background: "#d9b36a",
                     }}
-                  >
+                  />
+                  TABLE 1 · SCAN · ORDER · SAVOUR
+                </div>
+
+                {/* Browse banner */}
+                <div
+                  style={{
+                    background: "rgba(217, 179, 106, 0.08)",
+                    border: "1px solid rgba(217, 179, 106, 0.3)",
+                    borderRadius: 14,
+                    padding: "12px 14px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginBottom: 14,
+                    textAlign: "left",
+                  }}
+                >
+                  <div>
                     <div
                       style={{
-                        width: 56,
-                        height: 56,
-                        borderRadius: 12,
-                        background: "var(--terracotta-soft)",
-                        flexShrink: 0,
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: 26,
+                        fontFamily: "var(--font-display)",
+                        fontSize: 15,
+                        fontWeight: 600,
+                        color: "#f5efe0",
                       }}
                     >
-                      {item.emoji}
+                      Browse the Full Menu
                     </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div
-                        style={{
-                          fontSize: 13,
-                          fontWeight: 600,
-                          color: "var(--ink)",
-                          marginBottom: 2,
-                        }}
-                      >
-                        {item.name}
-                      </div>
-                      <div
-                        style={{
-                          fontSize: 11,
-                          color: "var(--ink-muted)",
-                          marginBottom: 6,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        {item.desc}
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                        }}
-                      >
-                        <span
-                          style={{
-                            fontSize: 13,
-                            fontWeight: 700,
-                            color: "var(--terracotta)",
-                          }}
-                        >
-                          {item.price}
-                        </span>
-                        <span
-                          style={{
-                            fontSize: 11,
-                            fontWeight: 600,
-                            color: "var(--surface)",
-                            background: "var(--forest)",
-                            padding: "4px 12px",
-                            borderRadius: 12,
-                          }}
-                        >
-                          Add
-                        </span>
-                      </div>
+                    <div style={{ fontSize: 10, color: "#a9b4c0" }}>
+                      Every dish, pour and pairing
                     </div>
                   </div>
-                ))}
-              </div>
+                  <div
+                    style={{
+                      width: 30,
+                      height: 30,
+                      borderRadius: "50%",
+                      background: "#d9b36a",
+                      color: "#0b1622",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: 14,
+                      flexShrink: 0,
+                    }}
+                  >
+                    →
+                  </div>
+                </div>
 
-              {/* Cart bar */}
-              <div
-                style={{
-                  background: "var(--ink)",
-                  color: "var(--surface)",
-                  borderRadius: 14,
-                  padding: "12px 18px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  fontSize: 13,
-                  fontWeight: 600,
-                }}
-              >
-                <span>View order · 2 items</span>
-                <span>R285</span>
+                {/* Category grid */}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: 10,
+                    flex: 1,
+                  }}
+                >
+                  {categories.map((cat) => (
+                    <div
+                      key={cat.name}
+                      style={{
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(217, 179, 106, 0.16)",
+                        borderRadius: 14,
+                        padding: "14px 12px",
+                        textAlign: "left",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div style={{ fontSize: 16 }}>{cat.icon}</div>
+                      <div>
+                        <div
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            fontSize: 16,
+                            fontWeight: 600,
+                            color: "#f5efe0",
+                          }}
+                        >
+                          {cat.name}
+                        </div>
+                        <div style={{ fontSize: 10, color: "#a9b4c0" }}>
+                          {cat.sub}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Footer */}
+                <div
+                  style={{
+                    fontSize: 9,
+                    letterSpacing: "0.25em",
+                    color: "#d9b36a",
+                    fontWeight: 600,
+                    marginTop: 12,
+                  }}
+                >
+                  ⚔ BUTCHERY
+                </div>
               </div>
             </div>
-          </div>
+          </a>
 
           {/* Caption under mockup */}
           <p
@@ -359,7 +393,15 @@ export default function Hero() {
               marginTop: 16,
             }}
           >
-            Product preview with sample menu data
+            Live demo: Trumps Prime Grillhouse, a sample restaurant —{" "}
+            <a
+              href={DEMO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--terracotta)", fontWeight: 600 }}
+            >
+              tap to open it
+            </a>
           </p>
         </motion.div>
       </div>
