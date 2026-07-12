@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "EMenu Technology — Digital Menus & Smart Ordering for Restaurants",
   description:
-    "QR digital menus, smart table ordering, and a live kitchen dashboard for independent restaurants. Now onboarding founding partner restaurants.",
+    "QR digital menus, smart table ordering, and a live kitchen dashboard for independent restaurants. Try the live demo — no signup needed.",
   keywords: [
     "digital menu",
     "QR menu",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "EMenu Technology — Digital Menus & Smart Ordering for Restaurants",
     description:
-      "QR digital menus, smart table ordering, and a live kitchen dashboard for independent restaurants.",
+      "QR digital menus, smart table ordering, and a live kitchen dashboard for independent restaurants. Try the live demo — no signup needed.",
     type: "website",
     url: "https://emenutechnology.com",
     siteName: "EMenu Technology",

@@ -8,7 +8,6 @@ import HowItWorks from "@/components/HowItWorks";
 import Features from "@/components/Features";
 import ProductVisuals from "@/components/ProductVisuals";
 import Benefits from "@/components/Benefits";
-import FoundingProgram from "@/components/FoundingProgram";
 import Pricing from "@/components/Pricing";
 import CTABanner from "@/components/CTABanner";
 import Footer from "@/components/Footer";
@@ -28,7 +27,6 @@ export default function Home() {
         <Features />
         <ProductVisuals />
         <Benefits />
-        <FoundingProgram />
         <Pricing />
         <CTABanner />
       </main>
