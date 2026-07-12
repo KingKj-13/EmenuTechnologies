@@ -48,7 +48,7 @@ export default function PricingPage() {
             }}
           >
             One once-off setup fee, one flat monthly fee. Month-to-month, no
-            hidden costs — and founding partners lock in their rate for good.
+            hidden costs, cancel anytime.
           </p>
         </section>
 
