@@ -33,9 +33,9 @@ export default function PricingPage() {
               color: "var(--ink)",
             }}
           >
-            Straight talk about{" "}
+            Pick the package that{" "}
             <span style={{ color: "var(--terracotta)", fontStyle: "italic" }}>
-              price
+              fits
             </span>
           </h1>
           <p
@@ -47,8 +47,8 @@ export default function PricingPage() {
               lineHeight: 1.7,
             }}
           >
-            We quote per restaurant rather than publishing a one-size-fits-all
-            number — and founding partners lock in preferential rates.
+            One once-off setup fee, one flat monthly fee. Month-to-month, no
+            hidden costs — and founding partners lock in their rate for good.
           </p>
         </section>
 

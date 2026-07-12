@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pricing — EMenu Technology",
   description:
-    "One complete plan, quoted per restaurant. Founding partner restaurants get preferential rates locked in permanently. No long-term contracts.",
+    "Four clear packages from R499/month: Silver, Gold, Platinum, and Diamond. Once-off setup includes full menu digitisation. Month-to-month, no hidden costs.",
 };
 
 export default function PricingLayout({
