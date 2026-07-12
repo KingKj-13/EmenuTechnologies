@@ -15,7 +15,7 @@ export default function Footer() {
     {
       title: "Company",
       links: [
-        { label: "Founding Partners", href: "/#founding-partners" },
+        { label: "How It Works", href: "/#how-it-works" },
         { label: "Contact", href: "/contact" },
       ],
     },

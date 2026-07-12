@@ -14,26 +14,10 @@ const demos = [
     emoji: "🥩",
   },
   {
-    title: "Guest Menu — Greek Sample",
-    description:
-      "Browse a sample taverna menu exactly as your guests would: scan, browse, customise, and order from a phone.",
-    url: "https://emenyu.com/Greek/1",
-    tag: "Guest Experience",
-    emoji: "🫒",
-  },
-  {
-    title: "Guest Menu — Seafood Sample",
-    description:
-      "A second sample restaurant showing how the same product adapts to a different menu, brand, and style.",
-    url: "https://emenyu.com/AlPescatore/1",
-    tag: "Guest Experience",
-    emoji: "🐟",
-  },
-  {
     title: "Admin Dashboard",
     description:
-      "The owner's view: live orders by table, menu editing, and daily sales insights — the screen your kitchen would run on.",
-    url: "https://emenyu.com/Greek/Admin",
+      "The owner's view: live orders by table, menu editing, and sales insights — the screen your kitchen and floor would run on.",
+    url: "https://emenyu.com/demo/admin",
     tag: "Owner View",
     emoji: "📊",
   },

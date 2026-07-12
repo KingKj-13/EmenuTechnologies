@@ -3,7 +3,20 @@
 import { motion } from "framer-motion";
 import SectionWrapper from "./ui/SectionWrapper";
 import GlowButton from "./ui/GlowButton";
-import { Check } from "lucide-react";
+import { Check, X, Sparkles } from "lucide-react";
+
+// Every card shows the full feature matrix so packages are easy to compare.
+const allFeatures = [
+  { name: "Digital menu with photos", premium: false },
+  { name: "Menu videos", premium: false },
+  { name: "Waiter app", premium: false },
+  { name: "Admin app", premium: false },
+  { name: "Admin analytics", premium: false },
+  { name: "AI up-sell & cross-sell", premium: true },
+  { name: "Waiter PRO AI app", premium: true },
+  { name: "Food ratings", premium: false },
+  { name: "Support & maintenance", premium: false },
+];
 
 const plans = [
   {
@@ -11,46 +24,67 @@ const plans = [
     monthly: "R499",
     setup: "R2,000",
     color: "#8a94a0",
-    soft: "#eef1f4",
-    isFeatured: false,
-    baseline: "Everything you need to go digital",
-    features: [
+    tagline: "The essentials to go digital",
+    included: [
       "Digital menu with photos",
       "Waiter app",
       "Admin app",
       "Support & maintenance",
     ],
+    isFeatured: false,
   },
   {
     name: "Gold",
     monthly: "R699",
     setup: "R3,000",
     color: "#b98a2f",
-    soft: "#f9f0dc",
+    tagline: "Add videos and know your numbers",
+    included: [
+      "Digital menu with photos",
+      "Menu videos",
+      "Waiter app",
+      "Admin app",
+      "Admin analytics",
+      "Support & maintenance",
+    ],
     isFeatured: false,
-    baseline: "Everything in Silver, plus",
-    features: ["Menu videos", "Admin analytics"],
   },
   {
     name: "Platinum",
     monthly: "R999",
     setup: "R4,000",
     color: "#c2542b",
-    soft: "#fdeee6",
+    tagline: "Let AI grow every order",
+    included: [
+      "Digital menu with photos",
+      "Menu videos",
+      "Waiter app",
+      "Admin app",
+      "Admin analytics",
+      "AI up-sell & cross-sell",
+      "Support & maintenance",
+    ],
     isFeatured: true,
     badge: "Best Value",
-    baseline: "Everything in Gold, plus",
-    features: ["AI up-sell & cross-sell"],
   },
   {
     name: "Diamond",
     monthly: "R1,099",
     setup: "R5,000",
     color: "#3f7f8c",
-    soft: "#e8f1f3",
+    tagline: "The complete experience",
+    included: [
+      "Digital menu with photos",
+      "Menu videos",
+      "Waiter app",
+      "Admin app",
+      "Admin analytics",
+      "AI up-sell & cross-sell",
+      "Waiter PRO AI app",
+      "Food ratings",
+      "Support & maintenance",
+    ],
     isFeatured: false,
-    baseline: "Everything in Platinum, plus",
-    features: ["Waiter PRO AI app", "Food ratings"],
   },
 ];
 
@@ -106,7 +140,7 @@ export default function Pricing({ showHeader = true }: { showHeader?: boolean })
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(255px, 1fr))",
             gap: 20,
             alignItems: "stretch",
           }}
@@ -124,170 +158,202 @@ export default function Pricing({ showHeader = true }: { showHeader?: boolean })
                   ? `2px solid ${plan.color}`
                   : "1px solid var(--line)",
                 background: "var(--surface)",
-                padding: "32px 26px",
                 position: "relative",
                 display: "flex",
                 flexDirection: "column",
+                overflow: "hidden",
                 boxShadow: plan.isFeatured
                   ? "var(--shadow-lift)"
                   : "var(--shadow-card)",
               }}
             >
+              {/* Tier color band */}
+              <div
+                style={{
+                  height: 6,
+                  background: plan.color,
+                }}
+              />
+
               {plan.isFeatured && plan.badge && (
                 <div
                   style={{
                     position: "absolute",
-                    top: -13,
-                    left: "50%",
-                    transform: "translateX(-50%)",
+                    top: 18,
+                    right: 18,
                     background: plan.color,
                     color: "#fff",
-                    fontSize: 11,
+                    fontSize: 10,
                     fontWeight: 700,
-                    letterSpacing: "0.06em",
+                    letterSpacing: "0.08em",
                     textTransform: "uppercase",
-                    padding: "5px 14px",
+                    padding: "5px 12px",
                     borderRadius: 100,
-                    whiteSpace: "nowrap",
                   }}
                 >
                   {plan.badge}
                 </div>
               )}
 
-              {/* Tier name */}
               <div
                 style={{
+                  padding: "26px 24px 28px",
                   display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  marginBottom: 18,
+                  flexDirection: "column",
+                  flex: 1,
                 }}
               >
-                <span
-                  style={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: "50%",
-                    background: plan.color,
-                  }}
-                />
+                {/* Tier name + tagline */}
                 <h3
                   style={{
-                    fontSize: 20,
-                    fontWeight: 600,
-                    fontFamily: "var(--font-display)",
-                    color: "var(--ink)",
+                    fontSize: 15,
+                    fontWeight: 700,
+                    color: plan.color,
                     textTransform: "uppercase",
-                    letterSpacing: "0.06em",
+                    letterSpacing: "0.12em",
+                    marginBottom: 4,
                   }}
                 >
                   {plan.name}
                 </h3>
-              </div>
-
-              {/* Price */}
-              <div style={{ marginBottom: 6 }}>
-                <span
+                <p
                   style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: 40,
-                    fontWeight: 700,
-                    letterSpacing: "-0.02em",
-                    color: plan.isFeatured ? plan.color : "var(--ink)",
-                  }}
-                >
-                  {plan.monthly}
-                </span>
-                <span
-                  style={{
-                    fontSize: 14,
+                    fontSize: 13,
                     color: "var(--ink-muted)",
-                    fontWeight: 500,
+                    marginBottom: 20,
+                    minHeight: 20,
                   }}
                 >
-                  {" "}
-                  /month
-                </span>
-              </div>
-              <div
-                style={{
-                  fontSize: 13,
-                  color: "var(--ink-soft)",
-                  background: plan.soft,
-                  borderRadius: 8,
-                  padding: "6px 10px",
-                  display: "inline-block",
-                  alignSelf: "flex-start",
-                  marginBottom: 22,
-                  fontWeight: 500,
-                }}
-              >
-                {plan.setup} once-off setup
-              </div>
+                  {plan.tagline}
+                </p>
 
-              {/* Features */}
-              <div
-                style={{
-                  fontSize: 13,
-                  fontWeight: 600,
-                  color: "var(--ink-muted)",
-                  marginBottom: 12,
-                }}
-              >
-                {plan.baseline}:
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
-                  flex: 1,
-                  marginBottom: 28,
-                }}
-              >
-                {plan.features.map((feature) => (
+                {/* Price block */}
+                <div
+                  style={{
+                    paddingBottom: 20,
+                    marginBottom: 20,
+                    borderBottom: "1px solid var(--line)",
+                  }}
+                >
                   <div
-                    key={feature}
                     style={{
                       display: "flex",
-                      alignItems: "flex-start",
-                      gap: 10,
-                      fontSize: 14,
-                      color: "var(--ink-soft)",
-                      lineHeight: 1.5,
+                      alignItems: "baseline",
+                      gap: 6,
                     }}
                   >
                     <span
                       style={{
-                        color: plan.color,
-                        flexShrink: 0,
-                        marginTop: 2,
+                        fontFamily: "var(--font-display)",
+                        fontSize: 44,
+                        fontWeight: 700,
+                        letterSpacing: "-0.02em",
+                        color: "var(--ink)",
+                        lineHeight: 1,
                       }}
                     >
-                      <Check size={16} />
+                      {plan.monthly}
                     </span>
-                    {feature}
+                    <span
+                      style={{
+                        fontSize: 14,
+                        color: "var(--ink-muted)",
+                        fontWeight: 500,
+                      }}
+                    >
+                      /month
+                    </span>
                   </div>
-                ))}
-              </div>
+                  <div
+                    style={{
+                      fontSize: 13,
+                      color: "var(--ink-soft)",
+                      marginTop: 8,
+                      fontWeight: 500,
+                    }}
+                  >
+                    + {plan.setup} once-off setup
+                  </div>
+                </div>
 
-              <GlowButton
-                variant={plan.isFeatured ? "primary" : "secondary"}
-                href="/contact"
-                className="w-full"
-              >
-                <span
-                  style={{ display: "block", width: "100%", textAlign: "center" }}
+                {/* Full feature matrix */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 11,
+                    flex: 1,
+                    marginBottom: 26,
+                  }}
                 >
-                  Get Started
-                </span>
-              </GlowButton>
+                  {allFeatures.map((feature) => {
+                    const has = plan.included.includes(feature.name);
+                    return (
+                      <div
+                        key={feature.name}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 10,
+                          fontSize: 13.5,
+                          color: has ? "var(--ink-soft)" : "var(--ink-muted)",
+                          opacity: has ? 1 : 0.45,
+                          lineHeight: 1.4,
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: has ? plan.color : "var(--ink-muted)",
+                            flexShrink: 0,
+                            display: "flex",
+                          }}
+                        >
+                          {has ? <Check size={15} /> : <X size={15} />}
+                        </span>
+                        <span
+                          style={{
+                            textDecoration: has ? "none" : "line-through",
+                            fontWeight: feature.premium && has ? 600 : 400,
+                            color:
+                              feature.premium && has
+                                ? "var(--terracotta)"
+                                : undefined,
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 5,
+                          }}
+                        >
+                          {feature.name}
+                          {feature.premium && has && (
+                            <Sparkles size={12} style={{ flexShrink: 0 }} />
+                          )}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <GlowButton
+                  variant={plan.isFeatured ? "primary" : "secondary"}
+                  href="/contact"
+                  className="w-full"
+                >
+                  <span
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      textAlign: "center",
+                    }}
+                  >
+                    Get Started
+                  </span>
+                </GlowButton>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Honest footnote */}
+        {/* Footnote */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -304,8 +370,12 @@ export default function Pricing({ showHeader = true }: { showHeader?: boolean })
             lineHeight: 1.7,
           }}
         >
-          All packages are month-to-month — cancel anytime. Founding partner
-          restaurants lock in their rate permanently.{" "}
+          <Sparkles
+            size={13}
+            style={{ display: "inline", verticalAlign: "-2px" }}
+          />{" "}
+          = premium AI features. All packages are month-to-month — cancel
+          anytime.{" "}
           <a
             href="https://emenyu.com/demo/table1/menu"
             target="_blank"

@@ -86,7 +86,7 @@ export default function Hero() {
                 background: "var(--forest)",
               }}
             />
-            Now onboarding founding restaurants
+            Now onboarding new restaurants
           </motion.div>
 
           <motion.h1

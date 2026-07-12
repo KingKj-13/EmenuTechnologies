@@ -4,49 +4,81 @@ import { motion } from "framer-motion";
 import SectionWrapper from "./ui/SectionWrapper";
 import {
   Smartphone,
-  Sparkles,
+  PlayCircle,
+  ClipboardList,
+  LayoutDashboard,
   BarChart3,
-  PencilRuler,
-  Languages,
-  Bell,
+  Sparkles,
+  Bot,
+  Star,
+  LifeBuoy,
 } from "lucide-react";
 
+// The complete product, feature by feature. Premium features are the two
+// AI capabilities available in the Platinum and Diamond packages.
 const features = [
   {
     icon: <Smartphone size={24} />,
-    title: "QR Digital Menu",
+    title: "Digital Menu with Photos",
     description:
-      "A mobile-first menu with photos and descriptions that update in real time. Change a price or 86 a dish in seconds.",
+      "Guests scan a QR code and get your full menu with appetising photos of every dish. Change a price or mark a dish sold out and it updates on every table instantly.",
+    premium: false,
   },
   {
-    icon: <Sparkles size={24} />,
-    title: "Smart Suggestions",
+    icon: <PlayCircle size={24} />,
+    title: "Menu Videos",
     description:
-      "Pairing and add-on suggestions built into the ordering flow — a side, a drink, a dessert — presented naturally, never pushy.",
+      "Short videos of your signature dishes playing right inside the menu — sizzling steaks sell themselves better than any description could.",
+    premium: false,
   },
   {
-    icon: <Bell size={24} />,
-    title: "Live Order Dashboard",
+    icon: <ClipboardList size={24} />,
+    title: "Waiter App",
     description:
-      "Every order lands on your kitchen dashboard the moment it's placed, itemised by table with modifiers spelled out.",
+      "Your floor staff see every table, take and adjust orders, and stay in sync with the kitchen — no more paper dockets or misheard modifiers.",
+    premium: false,
+  },
+  {
+    icon: <LayoutDashboard size={24} />,
+    title: "Admin App",
+    description:
+      "Run the restaurant from one screen: edit the menu, adjust prices, manage availability, and watch live orders as they land — from any device.",
+    premium: false,
   },
   {
     icon: <BarChart3 size={24} />,
-    title: "Sales Insights",
+    title: "Admin Analytics",
     description:
-      "See what sells, when, and at which tables. Simple daily views — not a data-science project.",
+      "Know what sells, when, and at which tables. Daily and weekly views of your top dishes, busiest hours, and revenue — no spreadsheets needed.",
+    premium: false,
   },
   {
-    icon: <PencilRuler size={24} />,
-    title: "Your Brand, Your Menu",
+    icon: <Sparkles size={24} />,
+    title: "AI Up-sell & Cross-sell",
     description:
-      "Colours, photography, and layout tuned to match your restaurant. It should feel like yours, not ours.",
+      "The menu suggests the right wine with the steak and the dessert after the mains — at the moment guests are deciding. Higher order values, zero pressure on your staff.",
+    premium: true,
   },
   {
-    icon: <Languages size={24} />,
-    title: "Multi-language Ready",
+    icon: <Bot size={24} />,
+    title: "Waiter PRO AI App",
     description:
-      "Serve tourists and locals alike — menus can be offered in multiple languages from the same source.",
+      "An AI copilot for your floor staff: it prompts pairings, recommends add-ons, and guides every waiter to sell like your best one.",
+    premium: true,
+  },
+  {
+    icon: <Star size={24} />,
+    title: "Food Ratings",
+    description:
+      "Guests rate dishes right from the menu, so you learn what to fix and what to feature — feedback that never makes it to Google reviews.",
+    premium: false,
+  },
+  {
+    icon: <LifeBuoy size={24} />,
+    title: "Support & Maintenance",
+    description:
+      "Direct WhatsApp support, hosting, updates, and menu changes handled for you. Every package includes it — you cook, we keep it running.",
+    premium: false,
   },
 ];
 
@@ -62,7 +94,7 @@ export default function Features() {
             viewport={{ once: true }}
             className="eyebrow"
           >
-            What You Get
+            The Product
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -78,7 +110,7 @@ export default function Features() {
               color: "var(--ink)",
             }}
           >
-            Everything a busy floor needs
+            Every feature, explained
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -88,12 +120,15 @@ export default function Features() {
             style={{
               fontSize: 17,
               color: "var(--ink-soft)",
-              maxWidth: 540,
+              maxWidth: 560,
               margin: "0 auto",
             }}
           >
-            One system that covers the guest, the floor, and the kitchen —
-            without replacing the way you run your restaurant.
+            One system covering the guest, the floor, and the kitchen.{" "}
+            <span style={{ color: "var(--terracotta)", fontWeight: 600 }}>
+              Premium
+            </span>{" "}
+            marks the AI features included in Platinum and Diamond packages.
           </motion.p>
         </div>
 
@@ -111,37 +146,66 @@ export default function Features() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
+              transition={{ duration: 0.5, delay: i * 0.05 }}
               whileHover={{ y: -4, transition: { duration: 0.3 } }}
               style={{
-                background: "var(--surface)",
-                border: "1px solid var(--line)",
+                background: feature.premium
+                  ? "linear-gradient(180deg, var(--terracotta-soft) 0%, var(--surface) 45%)"
+                  : "var(--surface)",
+                border: feature.premium
+                  ? "1.5px solid var(--terracotta)"
+                  : "1px solid var(--line)",
                 borderRadius: "var(--radius-xl)",
                 padding: 32,
                 cursor: "default",
                 boxShadow: "var(--shadow-card)",
                 transition: "all 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
+                position: "relative",
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = "var(--shadow-lift)";
-                e.currentTarget.style.borderColor = "var(--line-strong)";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.boxShadow = "var(--shadow-card)";
-                e.currentTarget.style.borderColor = "var(--line)";
               }}
             >
+              {feature.premium && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 18,
+                    right: 18,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 5,
+                    background: "var(--terracotta)",
+                    color: "#fff",
+                    fontSize: 10,
+                    fontWeight: 700,
+                    letterSpacing: "0.08em",
+                    textTransform: "uppercase",
+                    padding: "5px 12px",
+                    borderRadius: 100,
+                  }}
+                >
+                  <Sparkles size={11} />
+                  Premium
+                </div>
+              )}
+
               <div
                 style={{
                   width: 48,
                   height: 48,
                   borderRadius: 14,
-                  background: "var(--terracotta-soft)",
+                  background: feature.premium
+                    ? "var(--terracotta)"
+                    : "var(--terracotta-soft)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   marginBottom: 20,
-                  color: "var(--terracotta)",
+                  color: feature.premium ? "#fff" : "var(--terracotta)",
                 }}
               >
                 {feature.icon}
