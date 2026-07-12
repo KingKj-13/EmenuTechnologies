@@ -5,15 +5,53 @@ import SectionWrapper from "./ui/SectionWrapper";
 import GlowButton from "./ui/GlowButton";
 import { Check } from "lucide-react";
 
-// No public price list yet — pricing is discussed per restaurant.
-const included = [
-  "QR digital menu with photos & live updates",
-  "Table ordering straight from guests' phones",
-  "Live kitchen & floor dashboard",
-  "Menu manager — edit dishes and prices anytime",
-  "Sales insights and daily summaries",
-  "Setup and menu digitisation done for you",
-  "WhatsApp support, direct with our team",
+const plans = [
+  {
+    name: "Silver",
+    monthly: "R499",
+    setup: "R2,000",
+    color: "#8a94a0",
+    soft: "#eef1f4",
+    isFeatured: false,
+    baseline: "Everything you need to go digital",
+    features: [
+      "Digital menu with photos",
+      "Waiter app",
+      "Admin app",
+      "Support & maintenance",
+    ],
+  },
+  {
+    name: "Gold",
+    monthly: "R699",
+    setup: "R3,000",
+    color: "#b98a2f",
+    soft: "#f9f0dc",
+    isFeatured: false,
+    baseline: "Everything in Silver, plus",
+    features: ["Menu videos", "Admin analytics"],
+  },
+  {
+    name: "Platinum",
+    monthly: "R999",
+    setup: "R4,000",
+    color: "#c2542b",
+    soft: "#fdeee6",
+    isFeatured: true,
+    badge: "Best Value",
+    baseline: "Everything in Gold, plus",
+    features: ["AI up-sell & cross-sell"],
+  },
+  {
+    name: "Diamond",
+    monthly: "R1,099",
+    setup: "R5,000",
+    color: "#3f7f8c",
+    soft: "#e8f1f3",
+    isFeatured: false,
+    baseline: "Everything in Platinum, plus",
+    features: ["Waiter PRO AI app", "Food ratings"],
+  },
 ];
 
 export default function Pricing({ showHeader = true }: { showHeader?: boolean }) {
@@ -44,7 +82,7 @@ export default function Pricing({ showHeader = true }: { showHeader?: boolean })
                 color: "var(--ink)",
               }}
             >
-              Priced for your restaurant, not a spreadsheet
+              Four packages, clear prices
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -58,151 +96,226 @@ export default function Pricing({ showHeader = true }: { showHeader?: boolean })
                 margin: "0 auto",
               }}
             >
-              Every restaurant is different, so we&apos;d rather talk than
-              publish a one-size-fits-all number. Founding partners get
-              preferential rates, locked in for good.
+              A once-off setup fee covers digitising your full menu. Then one
+              flat monthly fee — no hidden costs, no long-term contract.
             </motion.p>
           </div>
         )}
 
-        {/* Single honest card */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+        {/* Pricing grid */}
+        <div
           style={{
-            maxWidth: 880,
-            margin: "0 auto",
-            borderRadius: "var(--radius-xl)",
-            border: "1px solid var(--line)",
-            background: "var(--surface)",
-            boxShadow: "var(--shadow-lift)",
-            overflow: "hidden",
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gap: 20,
+            alignItems: "stretch",
           }}
         >
-          {/* Left: what's included */}
-          <div style={{ padding: "clamp(32px, 5vw, 48px)" }}>
-            <h3
+          {plans.map((plan, i) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
               style={{
-                fontSize: 22,
-                fontWeight: 600,
-                fontFamily: "var(--font-display)",
-                marginBottom: 8,
-                color: "var(--ink)",
-              }}
-            >
-              One complete plan
-            </h3>
-            <p
-              style={{
-                fontSize: 14,
-                color: "var(--ink-soft)",
-                marginBottom: 28,
-                lineHeight: 1.6,
-              }}
-            >
-              No tiers, no feature gates. Every restaurant gets the full
-              product.
-            </p>
-            <div
-              style={{
+                borderRadius: "var(--radius-xl)",
+                border: plan.isFeatured
+                  ? `2px solid ${plan.color}`
+                  : "1px solid var(--line)",
+                background: "var(--surface)",
+                padding: "32px 26px",
+                position: "relative",
                 display: "flex",
                 flexDirection: "column",
-                gap: 14,
+                boxShadow: plan.isFeatured
+                  ? "var(--shadow-lift)"
+                  : "var(--shadow-card)",
               }}
             >
-              {included.map((feature) => (
+              {plan.isFeatured && plan.badge && (
                 <div
-                  key={feature}
                   style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    gap: 12,
-                    fontSize: 14,
-                    color: "var(--ink-soft)",
-                    lineHeight: 1.5,
+                    position: "absolute",
+                    top: -13,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    background: plan.color,
+                    color: "#fff",
+                    fontSize: 11,
+                    fontWeight: 700,
+                    letterSpacing: "0.06em",
+                    textTransform: "uppercase",
+                    padding: "5px 14px",
+                    borderRadius: 100,
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  <span
-                    style={{
-                      color: "var(--forest)",
-                      flexShrink: 0,
-                      marginTop: 2,
-                    }}
-                  >
-                    <Check size={17} />
-                  </span>
-                  {feature}
+                  {plan.badge}
                 </div>
-              ))}
-            </div>
-          </div>
+              )}
 
-          {/* Right: CTA */}
-          <div
-            style={{
-              padding: "clamp(32px, 5vw, 48px)",
-              background: "var(--paper-deep)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              gap: 20,
-            }}
-          >
-            <div>
+              {/* Tier name */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 18,
+                }}
+              >
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: "50%",
+                    background: plan.color,
+                  }}
+                />
+                <h3
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 600,
+                    fontFamily: "var(--font-display)",
+                    color: "var(--ink)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  {plan.name}
+                </h3>
+              </div>
+
+              {/* Price */}
+              <div style={{ marginBottom: 6 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: 40,
+                    fontWeight: 700,
+                    letterSpacing: "-0.02em",
+                    color: plan.isFeatured ? plan.color : "var(--ink)",
+                  }}
+                >
+                  {plan.monthly}
+                </span>
+                <span
+                  style={{
+                    fontSize: 14,
+                    color: "var(--ink-muted)",
+                    fontWeight: 500,
+                  }}
+                >
+                  {" "}
+                  /month
+                </span>
+              </div>
+              <div
+                style={{
+                  fontSize: 13,
+                  color: "var(--ink-soft)",
+                  background: plan.soft,
+                  borderRadius: 8,
+                  padding: "6px 10px",
+                  display: "inline-block",
+                  alignSelf: "flex-start",
+                  marginBottom: 22,
+                  fontWeight: 500,
+                }}
+              >
+                {plan.setup} once-off setup
+              </div>
+
+              {/* Features */}
               <div
                 style={{
                   fontSize: 13,
                   fontWeight: 600,
-                  color: "var(--terracotta)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.1em",
+                  color: "var(--ink-muted)",
                   marginBottom: 12,
                 }}
               >
-                Let&apos;s talk
+                {plan.baseline}:
               </div>
               <div
                 style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 30,
-                  fontWeight: 600,
-                  color: "var(--ink)",
-                  lineHeight: 1.2,
-                  marginBottom: 12,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 12,
+                  flex: 1,
+                  marginBottom: 28,
                 }}
               >
-                A price that fits your covers
+                {plan.features.map((feature) => (
+                  <div
+                    key={feature}
+                    style={{
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: 10,
+                      fontSize: 14,
+                      color: "var(--ink-soft)",
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    <span
+                      style={{
+                        color: plan.color,
+                        flexShrink: 0,
+                        marginTop: 2,
+                      }}
+                    >
+                      <Check size={16} />
+                    </span>
+                    {feature}
+                  </div>
+                ))}
               </div>
-              <p
-                style={{
-                  fontSize: 14,
-                  color: "var(--ink-soft)",
-                  lineHeight: 1.7,
-                }}
+
+              <GlowButton
+                variant={plan.isFeatured ? "primary" : "secondary"}
+                href="/contact"
+                className="w-full"
               >
-                Tell us about your restaurant — size, service style, what you
-                need — and we&apos;ll give you a straightforward quote. No
-                obligation, no pressure.
-              </p>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <GlowButton variant="primary" href="/contact" className="w-full">
-                <span style={{ display: "block", width: "100%", textAlign: "center" }}>
-                  Get a Quote
+                <span
+                  style={{ display: "block", width: "100%", textAlign: "center" }}
+                >
+                  Get Started
                 </span>
               </GlowButton>
-              <GlowButton variant="secondary" href="/demo" className="w-full">
-                <span style={{ display: "block", width: "100%", textAlign: "center" }}>
-                  Try the Demo First
-                </span>
-              </GlowButton>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Honest footnote */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          style={{
+            textAlign: "center",
+            fontSize: 14,
+            color: "var(--ink-muted)",
+            marginTop: 36,
+            maxWidth: 560,
+            marginLeft: "auto",
+            marginRight: "auto",
+            lineHeight: 1.7,
+          }}
+        >
+          All packages are month-to-month — cancel anytime. Founding partner
+          restaurants lock in their rate permanently.{" "}
+          <a
+            href="https://emenyu.com/demo/table1/menu"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "var(--terracotta)", fontWeight: 600 }}
+          >
+            Try the live demo
+          </a>{" "}
+          before you decide.
+        </motion.p>
       </div>
     </SectionWrapper>
   );

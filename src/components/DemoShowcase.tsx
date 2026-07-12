@@ -6,10 +6,10 @@ import SectionWrapper from "./ui/SectionWrapper";
 // Real, clickable product demos — clearly labelled as sample environments.
 const demos = [
   {
-    title: "Trumps Prime Grillhouse",
+    title: "Demo Steakhouse — Guest Menu",
     description:
-      "Our most polished sample restaurant — a premium steakhouse menu with wine cellar, cocktails, set menus, and table ordering.",
-    url: "https://emenyu.com/Trump/Table1",
+      "Our flagship sample restaurant: browse dishes with real photos, get one-tap chef pairings, and place a test order from your phone.",
+    url: "https://emenyu.com/demo/table1/menu",
     tag: "Featured",
     emoji: "🥩",
   },

@@ -7,7 +7,12 @@ const faqs = [
   {
     question: "How much does it cost?",
     answer:
-      "We don't publish a flat price because restaurants differ so much in size and needs. Get in touch, tell us about your restaurant, and we'll give you a clear quote. Restaurants joining now get founding-partner rates, locked in permanently.",
+      "Four packages: Silver at R499/month, Gold at R699/month, Platinum at R999/month, and Diamond at R1,099/month. Each has a once-off setup fee (R2,000–R5,000) that covers digitising your full menu, photos, and QR codes. Founding partners lock in their rate permanently.",
+  },
+  {
+    question: "What's the difference between the packages?",
+    answer:
+      "Silver covers the essentials: digital menu with photos, waiter app, admin app, and support. Gold adds menu videos and admin analytics. Platinum adds AI up-sell and cross-sell suggestions. Diamond adds the Waiter PRO AI app and food ratings.",
   },
   {
     question: "What does the Founding Partner Program mean?",

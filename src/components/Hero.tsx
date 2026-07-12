@@ -3,16 +3,32 @@
 import { motion } from "framer-motion";
 import GlowButton from "./ui/GlowButton";
 
-const DEMO_URL = "https://emenyu.com/Trump/Table1";
+const DEMO_URL = "https://emenyu.com/demo/table1/menu";
+const IMG = "https://emenyu.com/demo/Images/thumbnails";
 
-// Faithful recreation of the live demo (Trumps Prime Grillhouse sample
-// restaurant) — the phone links straight to the real thing.
-const categories = [
-  { name: "Wine", sub: "The cellar", icon: "🍷" },
-  { name: "Cocktails", sub: "Signature pours", icon: "🍸" },
-  { name: "Set Menu", sub: "Curated combos", icon: "✨" },
-  { name: "Mains", sub: "Steaks & grill", icon: "🥩" },
+// Faithful recreation of the live demo (Demo Steakhouse sample restaurant),
+// using real dish photos from the demo itself. The phone links to the
+// actual product.
+const menuItems = [
+  { name: "Ribeye 380g", price: "R 365", img: `${IMG}/ribeye_380g.webp` },
+  {
+    name: "Kingklip & Prawn",
+    price: "R 325",
+    img: `${IMG}/kingklip_and_prawn.webp`,
+  },
+  {
+    name: "Bacon Cheeseburger",
+    price: "R 165",
+    img: `${IMG}/bacon_and_cheese_burger.webp`,
+  },
+  {
+    name: "Red Velvet Cake",
+    price: "R 119",
+    img: `${IMG}/red_velvet_cake.webp`,
+  },
 ];
+
+const tabs = ["Starters", "Mains", "Dessert", "Drinks"];
 
 export default function Hero() {
   return (
@@ -143,7 +159,7 @@ export default function Hero() {
           </motion.p>
         </div>
 
-        {/* Right: phone linking to the live demo (Trumps Prime Grillhouse) */}
+        {/* Right: phone linking to the live demo (Demo Steakhouse) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -160,14 +176,14 @@ export default function Hero() {
             target="_blank"
             rel="noopener noreferrer"
             style={{ textDecoration: "none", display: "block" }}
-            aria-label="Open the live demo — Trumps Prime Grillhouse sample restaurant"
+            aria-label="Open the live demo — Demo Steakhouse sample restaurant"
           >
             <div
               style={{
                 position: "relative",
                 borderRadius: 40,
                 border: "6px solid var(--ink)",
-                background: "#0b1622",
+                background: "#0b1420",
                 height: 600,
                 boxShadow: "0 40px 80px rgba(46, 36, 24, 0.22)",
                 overflow: "hidden",
@@ -192,193 +208,205 @@ export default function Hero() {
               {/* Demo menu recreation */}
               <div
                 style={{
-                  padding: "52px 18px 16px",
+                  padding: "50px 16px 14px",
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
-                  textAlign: "center",
                 }}
               >
-                {/* Monogram */}
+                {/* Header */}
                 <div
                   style={{
-                    width: 40,
-                    height: 40,
-                    margin: "0 auto 8px",
-                    borderRadius: "50%",
-                    border: "1px solid #d9b36a",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    color: "#d9b36a",
-                    fontFamily: "var(--font-display)",
-                    fontSize: 18,
-                  }}
-                >
-                  T
-                </div>
-                <div
-                  style={{
-                    fontSize: 9,
-                    letterSpacing: "0.3em",
-                    color: "#d9b36a",
-                    fontWeight: 600,
-                    marginBottom: 4,
-                  }}
-                >
-                  WELCOME TO
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontSize: 30,
-                    fontWeight: 700,
-                    color: "#e9c982",
-                    lineHeight: 1.1,
-                  }}
-                >
-                  Trumps
-                </div>
-                <div
-                  style={{
-                    fontSize: 10,
-                    letterSpacing: "0.32em",
-                    color: "#d9b36a",
-                    fontWeight: 600,
-                    marginBottom: 12,
-                  }}
-                >
-                  PRIME GRILLHOUSE
-                </div>
-
-                {/* Table pill */}
-                <div
-                  style={{
-                    margin: "0 auto 14px",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: 6,
-                    padding: "6px 14px",
-                    borderRadius: 100,
-                    border: "1px solid rgba(217, 179, 106, 0.35)",
-                    fontSize: 9,
-                    letterSpacing: "0.18em",
-                    color: "#e6d8b8",
-                    fontWeight: 600,
-                  }}
-                >
-                  <span
-                    style={{
-                      width: 5,
-                      height: 5,
-                      borderRadius: "50%",
-                      background: "#d9b36a",
-                    }}
-                  />
-                  TABLE 1 · SCAN · ORDER · SAVOUR
-                </div>
-
-                {/* Browse banner */}
-                <div
-                  style={{
-                    background: "rgba(217, 179, 106, 0.08)",
-                    border: "1px solid rgba(217, 179, 106, 0.3)",
-                    borderRadius: 14,
-                    padding: "12px 14px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    marginBottom: 14,
-                    textAlign: "left",
+                    marginBottom: 12,
                   }}
                 >
                   <div>
                     <div
                       style={{
                         fontFamily: "var(--font-display)",
-                        fontSize: 15,
-                        fontWeight: 600,
+                        fontSize: 19,
+                        fontWeight: 700,
                         color: "#f5efe0",
+                        lineHeight: 1.1,
                       }}
                     >
-                      Browse the Full Menu
+                      Demo Steakhouse
                     </div>
-                    <div style={{ fontSize: 10, color: "#a9b4c0" }}>
-                      Every dish, pour and pairing
+                    <div
+                      style={{
+                        fontSize: 8,
+                        letterSpacing: "0.22em",
+                        color: "#d9b36a",
+                        fontWeight: 600,
+                      }}
+                    >
+                      PREMIUM STEAKHOUSE EXPERIENCE
                     </div>
                   </div>
                   <div
                     style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: "50%",
-                      background: "#d9b36a",
-                      color: "#0b1622",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 14,
-                      flexShrink: 0,
+                      padding: "5px 12px",
+                      borderRadius: 100,
+                      border: "1px solid rgba(217, 179, 106, 0.4)",
+                      fontSize: 10,
+                      color: "#e6d8b8",
+                      fontWeight: 600,
+                      whiteSpace: "nowrap",
                     }}
                   >
-                    →
+                    Table 1
                   </div>
                 </div>
 
-                {/* Category grid */}
+                {/* Category tabs */}
                 <div
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gap: 10,
-                    flex: 1,
+                    display: "flex",
+                    gap: 6,
+                    marginBottom: 14,
                   }}
                 >
-                  {categories.map((cat) => (
+                  {tabs.map((tab, i) => (
                     <div
-                      key={cat.name}
+                      key={tab}
                       style={{
-                        background: "rgba(255,255,255,0.04)",
-                        border: "1px solid rgba(217, 179, 106, 0.16)",
-                        borderRadius: 14,
-                        padding: "14px 12px",
-                        textAlign: "left",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "space-between",
+                        flex: 1,
+                        textAlign: "center",
+                        padding: "7px 0",
+                        borderRadius: 10,
+                        fontSize: 10,
+                        fontWeight: 600,
+                        background:
+                          i === 0
+                            ? "linear-gradient(135deg, #e9c982, #d9b36a)"
+                            : "rgba(255,255,255,0.05)",
+                        color: i === 0 ? "#0b1420" : "#c8d0d9",
+                        border:
+                          i === 0
+                            ? "none"
+                            : "1px solid rgba(255,255,255,0.07)",
                       }}
                     >
-                      <div style={{ fontSize: 16 }}>{cat.icon}</div>
-                      <div>
+                      {tab}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Pairing suggestion strip */}
+                <div
+                  style={{
+                    background: "rgba(217, 179, 106, 0.08)",
+                    border: "1px solid rgba(217, 179, 106, 0.28)",
+                    borderRadius: 12,
+                    padding: "10px 12px",
+                    marginBottom: 12,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      color: "#f5efe0",
+                    }}
+                  >
+                    Not sure what to order?
+                  </div>
+                  <div style={{ fontSize: 9, color: "#a9b4c0" }}>
+                    One-tap chef pairings — drink, starter, main & dessert
+                  </div>
+                </div>
+
+                {/* Menu items with real demo photos */}
+                <div style={{ flex: 1, overflow: "hidden" }}>
+                  {menuItems.map((item) => (
+                    <div
+                      key={item.name}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        background: "rgba(255,255,255,0.04)",
+                        border: "1px solid rgba(255,255,255,0.07)",
+                        borderRadius: 12,
+                        padding: 8,
+                        marginBottom: 8,
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        width={44}
+                        height={44}
+                        style={{
+                          width: 44,
+                          height: 44,
+                          borderRadius: 8,
+                          objectFit: "cover",
+                          flexShrink: 0,
+                        }}
+                      />
+                      <div style={{ flex: 1, minWidth: 0 }}>
                         <div
                           style={{
                             fontFamily: "var(--font-display)",
-                            fontSize: 16,
+                            fontSize: 12,
                             fontWeight: 600,
                             color: "#f5efe0",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
                           }}
                         >
-                          {cat.name}
+                          {item.name}
                         </div>
-                        <div style={{ fontSize: 10, color: "#a9b4c0" }}>
-                          {cat.sub}
+                        <div
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 700,
+                            color: "#d9b36a",
+                          }}
+                        >
+                          {item.price}
                         </div>
+                      </div>
+                      <div
+                        style={{
+                          padding: "5px 12px",
+                          borderRadius: 100,
+                          background: "#d9b36a",
+                          color: "#0b1420",
+                          fontSize: 10,
+                          fontWeight: 700,
+                          flexShrink: 0,
+                        }}
+                      >
+                        Add
                       </div>
                     </div>
                   ))}
                 </div>
 
-                {/* Footer */}
+                {/* Cart bar */}
                 <div
                   style={{
-                    fontSize: 9,
-                    letterSpacing: "0.25em",
-                    color: "#d9b36a",
-                    fontWeight: 600,
-                    marginTop: 12,
+                    background: "linear-gradient(135deg, #e9c982, #d9b36a)",
+                    color: "#0b1420",
+                    borderRadius: 12,
+                    padding: "10px 16px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: 12,
+                    fontWeight: 700,
                   }}
                 >
-                  ⚔ BUTCHERY
+                  <span>View order · 2 items</span>
+                  <span>R 530</span>
                 </div>
               </div>
             </div>
@@ -393,7 +421,7 @@ export default function Hero() {
               marginTop: 16,
             }}
           >
-            Live demo: Trumps Prime Grillhouse, a sample restaurant —{" "}
+            Live demo: Demo Steakhouse, a sample restaurant —{" "}
             <a
               href={DEMO_URL}
               target="_blank"
